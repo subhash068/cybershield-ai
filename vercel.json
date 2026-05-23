@@ -1,15 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/(ai|alerts|behavior|geo|incidents|live|logins|reports|settings|threats)(.*)",
-      "destination": "/"
-    },
-    {
-      "source": "/",
-      "destination": "/"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/((?!_next|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
       "destination": "/"
     }
   ]
