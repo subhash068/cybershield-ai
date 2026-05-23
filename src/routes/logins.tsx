@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Fragment } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend,
@@ -20,7 +21,7 @@ const auth = [
   { name: "Token", value: 982, fill: "var(--neon-amber)" },
 ];
 
-export default function LoginsPage() {
+function LoginsPage() {
   const susp = attacks.filter(a => a.type === "Brute Force" || a.type === "Credential Stuffing").slice(0, 10);
   return (
     <div className="space-y-6">
@@ -78,13 +79,13 @@ export default function LoginsPage() {
           <div />
           {Array.from({ length: 24 }).map((_, h) => <div key={h} className="text-center text-muted-foreground">{h}</div>)}
           {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d, dy) => (
-            <>
-              <div key={d} className="text-muted-foreground self-center">{d}</div>
+            <Fragment key={d}>
+              <div className="text-muted-foreground self-center">{d}</div>
               {Array.from({ length: 24 }).map((_, h) => {
                 const intensity = (Math.sin(h / 3 + dy) * 0.5 + 0.5) * (h > 18 || h < 6 ? 1 : 0.6);
                 return <div key={`${d}-${h}`} className="h-6 rounded-sm" style={{ background: `oklch(0.65 0.25 25 / ${intensity.toFixed(2)})` }} />;
               })}
-            </>
+            </Fragment>
           ))}
         </div>
       </Panel>
@@ -106,4 +107,3 @@ export default function LoginsPage() {
     </div>
   );
 }
-export { LoginsPage };
