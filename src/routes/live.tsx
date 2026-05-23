@@ -4,7 +4,15 @@ import { PageHeader } from "@/components/soc/PageHeader";
 import { LiveFeed } from "@/components/soc/LiveFeed";
 import { WorldMap } from "@/components/soc/WorldMap";
 import { attacks } from "@/lib/mock-data";
-import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 import { attackTrend } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/live")({
@@ -41,20 +49,32 @@ function LivePage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {cats.map((c) => (
           <div key={c.l} className="glass-panel rounded-lg p-3 relative overflow-hidden">
-            <div className="absolute -right-4 -top-4 h-12 w-12 rounded-full" style={{ background: c.c, opacity: 0.18, filter: "blur(14px)" }} />
+            <div
+              className="absolute -right-4 -top-4 h-12 w-12 rounded-full"
+              style={{ background: c.c, opacity: 0.18, filter: "blur(14px)" }}
+            />
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{c.l}</div>
-            <div className="text-2xl font-mono font-semibold mt-1" style={{ color: c.c }}>{c.v}</div>
+            <div className="text-2xl font-mono font-semibold mt-1" style={{ color: c.c }}>
+              {c.v}
+            </div>
             <div className="text-[10px] text-muted-foreground">last hour</div>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-        <Panel className="xl:col-span-2" title="Live Attack Stream" subtitle="Auto-refreshing every 1.8s" padded>
+        <Panel
+          className="xl:col-span-2"
+          title="Live Attack Stream"
+          subtitle="Auto-refreshing every 1.8s"
+          padded
+        >
           <LiveFeed rows={16} />
         </Panel>
         <Panel title="Attack Pulse" subtitle="Origin → SOC HQ" padded={false}>
-          <div className="h-[460px] p-2"><WorldMap events={attacks} max={50} /></div>
+          <div className="h-[460px] p-2">
+            <WorldMap events={attacks} max={50} />
+          </div>
         </Panel>
       </div>
 
@@ -69,10 +89,35 @@ function LivePage() {
                 </linearGradient>
               </defs>
               <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="t" stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} interval={5} />
-              <YAxis stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} />
-              <Tooltip contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} />
-              <Area type="monotone" dataKey="attacks" stroke="var(--neon-red)" fill="url(#lv1)" strokeWidth={2} />
+              <XAxis
+                dataKey="t"
+                stroke="var(--color-muted-foreground)"
+                fontSize={10}
+                tickLine={false}
+                axisLine={false}
+                interval={5}
+              />
+              <YAxis
+                stroke="var(--color-muted-foreground)"
+                fontSize={10}
+                tickLine={false}
+                axisLine={false}
+              />
+              <Tooltip
+                contentStyle={{
+                  background: "var(--color-popover)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: 8,
+                  fontSize: 12,
+                }}
+              />
+              <Area
+                type="monotone"
+                dataKey="attacks"
+                stroke="var(--neon-red)"
+                fill="url(#lv1)"
+                strokeWidth={2}
+              />
             </AreaChart>
           </ResponsiveContainer>
         </div>

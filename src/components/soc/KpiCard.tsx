@@ -21,7 +21,12 @@ function useCountUp(target: number, duration = 900) {
 }
 
 export function KpiCard({
-  label, value, delta, severity, unit = "", spark,
+  label,
+  value,
+  delta,
+  severity,
+  unit = "",
+  spark,
 }: {
   label: string;
   value: number;
@@ -41,14 +46,22 @@ export function KpiCard({
       />
       <div className="flex items-center justify-between">
         <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{label}</div>
-        <span className="h-2 w-2 rounded-full animate-blink" style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }} />
+        <span
+          className="h-2 w-2 rounded-full animate-blink"
+          style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }}
+        />
       </div>
       <div className="mt-2 flex items-end gap-2">
         <div className="text-3xl font-semibold font-mono tabular-nums">
           {unit === "%" || unit === "/100" ? v.toFixed(1) : Math.round(v).toLocaleString()}
           <span className="text-base text-muted-foreground ml-1">{unit}</span>
         </div>
-        <div className={cn("text-xs flex items-center mb-1", up ? "text-[color:var(--neon-red)]" : "text-[color:var(--neon-green)]")}>
+        <div
+          className={cn(
+            "text-xs flex items-center mb-1",
+            up ? "text-[color:var(--neon-red)]" : "text-[color:var(--neon-green)]",
+          )}
+        >
           {up ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}
           {Math.abs(delta)}%
         </div>

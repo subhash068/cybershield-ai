@@ -2,7 +2,12 @@ import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export function Panel({
-  title, subtitle, action, children, className, padded = true,
+  title,
+  subtitle,
+  action,
+  children,
+  className,
+  padded = true,
 }: {
   title?: ReactNode;
   subtitle?: ReactNode;

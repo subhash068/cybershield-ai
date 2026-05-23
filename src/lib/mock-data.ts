@@ -72,10 +72,28 @@ const ATTACK_TYPES: AttackType[] = [
 
 const SEVERITIES: Severity[] = ["critical", "high", "medium", "low"];
 const USERS = [
-  "j.connor", "a.ripley", "n.murphy", "t.anderson", "r.deckard",
-  "k.amaya", "svc-payments", "admin", "root", "p.shelby", "h.gordon",
+  "j.connor",
+  "a.ripley",
+  "n.murphy",
+  "t.anderson",
+  "r.deckard",
+  "k.amaya",
+  "svc-payments",
+  "admin",
+  "root",
+  "p.shelby",
+  "h.gordon",
 ];
-const TARGETS = ["auth-api", "payments-db", "vpn-gateway", "k8s-prod", "okta-sso", "github-ci", "smb-share", "exchange-srv"];
+const TARGETS = [
+  "auth-api",
+  "payments-db",
+  "vpn-gateway",
+  "k8s-prod",
+  "okta-sso",
+  "github-ci",
+  "smb-share",
+  "exchange-srv",
+];
 const STATUS: AttackEvent["status"][] = ["blocked", "investigating", "allowed", "contained"];
 
 function seeded(i: number) {
@@ -159,18 +177,95 @@ export const radarThreats = [
 ];
 
 export const incidents: Incident[] = [
-  { id: "INC-2041", title: "Privileged account lateral movement detected", severity: "critical", status: "investigating", assignee: "K. Amaya", opened: Date.now() - 1000 * 60 * 24, affected: ["okta-sso", "k8s-prod"], category: "Privilege Escalation", description: "Anomalous token reuse from a privileged service account observed across 4 production clusters." },
-  { id: "INC-2040", title: "Mass credential stuffing on /auth", severity: "high", status: "contained", assignee: "T. Anderson", opened: Date.now() - 1000 * 60 * 95, affected: ["auth-api"], category: "Credential Stuffing", description: "12,400 login attempts from a rotating residential proxy network. Rate-limit and ASN block active." },
-  { id: "INC-2039", title: "Suspicious PowerShell encoded payload", severity: "high", status: "open", assignee: "R. Deckard", opened: Date.now() - 1000 * 60 * 200, affected: ["fin-laptop-014"], category: "Malware", description: "Base64 payload spawning regsvr32 — IOC matches known TA505 toolkit." },
-  { id: "INC-2038", title: "Ransomware indicators on file share", severity: "critical", status: "open", assignee: "J. Connor", opened: Date.now() - 1000 * 60 * 320, affected: ["smb-share"], category: "Ransomware", description: "Rapid file renames with .lock extension and shadow copy deletion attempts." },
-  { id: "INC-2037", title: "Outbound DNS tunneling to unknown TLD", severity: "medium", status: "investigating", assignee: "N. Murphy", opened: Date.now() - 1000 * 60 * 480, affected: ["dmz-srv-03"], category: "Botnet", description: "High-entropy subdomains queried at 5s intervals — likely C2 beacon." },
-  { id: "INC-2036", title: "Insider data exfil via cloud storage", severity: "high", status: "investigating", assignee: "P. Shelby", opened: Date.now() - 1000 * 60 * 600, affected: ["sales-vdi"], category: "Insider Threat", description: "Bulk download from CRM followed by upload to personal Mega account." },
+  {
+    id: "INC-2041",
+    title: "Privileged account lateral movement detected",
+    severity: "critical",
+    status: "investigating",
+    assignee: "K. Amaya",
+    opened: Date.now() - 1000 * 60 * 24,
+    affected: ["okta-sso", "k8s-prod"],
+    category: "Privilege Escalation",
+    description:
+      "Anomalous token reuse from a privileged service account observed across 4 production clusters.",
+  },
+  {
+    id: "INC-2040",
+    title: "Mass credential stuffing on /auth",
+    severity: "high",
+    status: "contained",
+    assignee: "T. Anderson",
+    opened: Date.now() - 1000 * 60 * 95,
+    affected: ["auth-api"],
+    category: "Credential Stuffing",
+    description:
+      "12,400 login attempts from a rotating residential proxy network. Rate-limit and ASN block active.",
+  },
+  {
+    id: "INC-2039",
+    title: "Suspicious PowerShell encoded payload",
+    severity: "high",
+    status: "open",
+    assignee: "R. Deckard",
+    opened: Date.now() - 1000 * 60 * 200,
+    affected: ["fin-laptop-014"],
+    category: "Malware",
+    description: "Base64 payload spawning regsvr32 — IOC matches known TA505 toolkit.",
+  },
+  {
+    id: "INC-2038",
+    title: "Ransomware indicators on file share",
+    severity: "critical",
+    status: "open",
+    assignee: "J. Connor",
+    opened: Date.now() - 1000 * 60 * 320,
+    affected: ["smb-share"],
+    category: "Ransomware",
+    description: "Rapid file renames with .lock extension and shadow copy deletion attempts.",
+  },
+  {
+    id: "INC-2037",
+    title: "Outbound DNS tunneling to unknown TLD",
+    severity: "medium",
+    status: "investigating",
+    assignee: "N. Murphy",
+    opened: Date.now() - 1000 * 60 * 480,
+    affected: ["dmz-srv-03"],
+    category: "Botnet",
+    description: "High-entropy subdomains queried at 5s intervals — likely C2 beacon.",
+  },
+  {
+    id: "INC-2036",
+    title: "Insider data exfil via cloud storage",
+    severity: "high",
+    status: "investigating",
+    assignee: "P. Shelby",
+    opened: Date.now() - 1000 * 60 * 600,
+    affected: ["sales-vdi"],
+    category: "Insider Threat",
+    description: "Bulk download from CRM followed by upload to personal Mega account.",
+  },
 ];
 
 export const aiSummaries = [
-  { title: "Coordinated brute force campaign", body: "AI correlated 4,212 failed logins across 38 IPs in /24 ranges from RU and IR ASNs. Pattern matches known APT brute-force tooling. Recommend MFA enforcement and ASN block.", confidence: 94, severity: "critical" as Severity },
-  { title: "Ransomware staging detected", body: "Unusual SMB enumeration plus shadow copy deletion on smb-share. 87% similarity to LockBit 3.0 staging behavior. Isolate host fin-srv-08 immediately.", confidence: 87, severity: "critical" as Severity },
-  { title: "Drift in privileged access usage", body: "Service account svc-payments accessed 6 net-new resources outside its baseline. Risk score climbed from 22 to 71 in 4h.", confidence: 76, severity: "high" as Severity },
+  {
+    title: "Coordinated brute force campaign",
+    body: "AI correlated 4,212 failed logins across 38 IPs in /24 ranges from RU and IR ASNs. Pattern matches known APT brute-force tooling. Recommend MFA enforcement and ASN block.",
+    confidence: 94,
+    severity: "critical" as Severity,
+  },
+  {
+    title: "Ransomware staging detected",
+    body: "Unusual SMB enumeration plus shadow copy deletion on smb-share. 87% similarity to LockBit 3.0 staging behavior. Isolate host fin-srv-08 immediately.",
+    confidence: 87,
+    severity: "critical" as Severity,
+  },
+  {
+    title: "Drift in privileged access usage",
+    body: "Service account svc-payments accessed 6 net-new resources outside its baseline. Risk score climbed from 22 to 71 in 4h.",
+    confidence: 76,
+    severity: "high" as Severity,
+  },
 ];
 
 export const aiRecommendations = [
@@ -195,16 +290,19 @@ export const userBehavior = [
 export const alerts = Array.from({ length: 20 }, (_, i) => ({
   id: `ALT-${5000 + i}`,
   severity: pick(SEVERITIES, i + 31),
-  title: pick([
-    "Anomalous login from new geo",
-    "Multiple failed MFA prompts",
-    "Suspicious process tree spawned",
-    "Token replay detected",
-    "Privileged role assignment",
-    "Outbound traffic to TOR exit",
-    "EDR signature match: Mimikatz",
-    "Brute-force burst on VPN",
-  ], i + 32),
+  title: pick(
+    [
+      "Anomalous login from new geo",
+      "Multiple failed MFA prompts",
+      "Suspicious process tree spawned",
+      "Token replay detected",
+      "Privileged role assignment",
+      "Outbound traffic to TOR exit",
+      "EDR signature match: Mimikatz",
+      "Brute-force burst on VPN",
+    ],
+    i + 32,
+  ),
   source: pick(TARGETS, i + 33),
   ts: Date.now() - i * 1000 * 60 * 7,
 }));
@@ -221,17 +319,25 @@ export const topCountries = [
 
 export function severityColor(s: Severity) {
   switch (s) {
-    case "critical": return "var(--neon-red)";
-    case "high": return "var(--neon-amber)";
-    case "medium": return "var(--neon-blue)";
-    case "low": return "var(--neon-green)";
+    case "critical":
+      return "var(--neon-red)";
+    case "high":
+      return "var(--neon-amber)";
+    case "medium":
+      return "var(--neon-blue)";
+    case "low":
+      return "var(--neon-green)";
   }
 }
 export function severityClass(s: Severity) {
   switch (s) {
-    case "critical": return "text-[color:var(--neon-red)] border-[color:var(--neon-red)]/40 bg-[color:var(--neon-red)]/10";
-    case "high": return "text-[color:var(--neon-amber)] border-[color:var(--neon-amber)]/40 bg-[color:var(--neon-amber)]/10";
-    case "medium": return "text-[color:var(--neon-blue)] border-[color:var(--neon-blue)]/40 bg-[color:var(--neon-blue)]/10";
-    case "low": return "text-[color:var(--neon-green)] border-[color:var(--neon-green)]/40 bg-[color:var(--neon-green)]/10";
+    case "critical":
+      return "text-[color:var(--neon-red)] border-[color:var(--neon-red)]/40 bg-[color:var(--neon-red)]/10";
+    case "high":
+      return "text-[color:var(--neon-amber)] border-[color:var(--neon-amber)]/40 bg-[color:var(--neon-amber)]/10";
+    case "medium":
+      return "text-[color:var(--neon-blue)] border-[color:var(--neon-blue)]/40 bg-[color:var(--neon-blue)]/10";
+    case "low":
+      return "text-[color:var(--neon-green)] border-[color:var(--neon-green)]/40 bg-[color:var(--neon-green)]/10";
   }
 }

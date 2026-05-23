@@ -41,7 +41,9 @@ export function TopNav() {
 
           <button className="relative h-9 w-9 grid place-items-center rounded-md border border-border bg-card/40 hover:bg-card/70 transition">
             <Bell className="h-4 w-4" />
-            <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full text-[10px] bg-[color:var(--neon-red)] text-white grid place-items-center animate-blink">14</span>
+            <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full text-[10px] bg-[color:var(--neon-red)] text-white grid place-items-center animate-blink">
+              14
+            </span>
           </button>
 
           <button className="flex items-center gap-2 h-9 pl-2 pr-3 rounded-md border border-border bg-card/40 hover:bg-card/70 transition">
@@ -57,11 +59,26 @@ export function TopNav() {
         <div className="animate-ticker whitespace-nowrap py-1 text-[11px] tracking-wider flex gap-10 will-change-transform">
           {Array.from({ length: 2 }).map((_, k) => (
             <span key={k} className="flex gap-10">
-              <span className="text-[color:var(--neon-red)]">● CRITICAL</span><span className="text-muted-foreground">Brute-force burst from 185.244.0.0/22 — 4,212 attempts/min</span>
-              <span className="text-[color:var(--neon-amber)]">● HIGH</span><span className="text-muted-foreground">Anomalous token reuse — svc-payments → k8s-prod</span>
-              <span className="text-[color:var(--neon-cyan)]">● AI</span><span className="text-muted-foreground">87% similarity to LockBit 3.0 staging on smb-share</span>
-              <span className="text-[color:var(--neon-red)]">● CRITICAL</span><span className="text-muted-foreground">Outbound DNS tunneling to unknown TLD — dmz-srv-03</span>
-              <span className="text-[color:var(--neon-green)]">● INFO</span><span className="text-muted-foreground">EDR signatures updated — 14,221 new IOCs</span>
+              <span className="text-[color:var(--neon-red)]">● CRITICAL</span>
+              <span className="text-muted-foreground">
+                Brute-force burst from 185.244.0.0/22 — 4,212 attempts/min
+              </span>
+              <span className="text-[color:var(--neon-amber)]">● HIGH</span>
+              <span className="text-muted-foreground">
+                Anomalous token reuse — svc-payments → k8s-prod
+              </span>
+              <span className="text-[color:var(--neon-cyan)]">● AI</span>
+              <span className="text-muted-foreground">
+                87% similarity to LockBit 3.0 staging on smb-share
+              </span>
+              <span className="text-[color:var(--neon-red)]">● CRITICAL</span>
+              <span className="text-muted-foreground">
+                Outbound DNS tunneling to unknown TLD — dmz-srv-03
+              </span>
+              <span className="text-[color:var(--neon-green)]">● INFO</span>
+              <span className="text-muted-foreground">
+                EDR signatures updated — 14,221 new IOCs
+              </span>
             </span>
           ))}
         </div>

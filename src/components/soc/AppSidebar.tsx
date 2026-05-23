@@ -1,7 +1,16 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
-  Shield, Activity, LogIn, Radio, Globe2, Users, Brain,
-  ShieldAlert, BellRing, FileText, Settings,
+  Shield,
+  Activity,
+  LogIn,
+  Radio,
+  Globe2,
+  Users,
+  Brain,
+  ShieldAlert,
+  BellRing,
+  FileText,
+  Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +44,9 @@ export function AppSidebar({ collapsed, onToggle }: { collapsed: boolean; onTogg
         </div>
         {!collapsed && (
           <div className="leading-tight">
-            <div className="font-semibold tracking-wider text-sm">CYBER<span className="neon-text">SHIELD</span></div>
+            <div className="font-semibold tracking-wider text-sm">
+              CYBER<span className="neon-text">SHIELD</span>
+            </div>
             <div className="text-[10px] text-muted-foreground tracking-[0.2em]">SOC · AI</div>
           </div>
         )}
@@ -53,7 +64,8 @@ export function AppSidebar({ collapsed, onToggle }: { collapsed: boolean; onTogg
                 "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-all group",
                 "text-[color:var(--sidebar-foreground)]/80 hover:text-[color:var(--sidebar-foreground)]",
                 "hover:bg-[color:var(--sidebar-accent)]",
-                active && "bg-[color:var(--sidebar-accent)] text-[color:var(--sidebar-foreground)] shadow-[inset_2px_0_0_0_var(--neon-blue)]",
+                active &&
+                  "bg-[color:var(--sidebar-accent)] text-[color:var(--sidebar-foreground)] shadow-[inset_2px_0_0_0_var(--neon-blue)]",
               )}
             >
               <Icon className={cn("h-4 w-4 shrink-0", active && "text-[color:var(--neon-cyan)]")} />

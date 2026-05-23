@@ -14,7 +14,11 @@ export function WorldMap({ events, max = 60 }: { events: AttackEvent[]; max?: nu
   const items = events.slice(0, max);
   return (
     <div className="relative w-full h-full rounded-md overflow-hidden grid-bg">
-      <svg viewBox="0 0 1000 500" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet">
+      <svg
+        viewBox="0 0 1000 500"
+        className="absolute inset-0 w-full h-full"
+        preserveAspectRatio="xMidYMid meet"
+      >
         <defs>
           <radialGradient id="hub" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="var(--neon-cyan)" stopOpacity="1" />
@@ -33,7 +37,8 @@ export function WorldMap({ events, max = 60 }: { events: AttackEvent[]; max?: nu
             const lat = 90 - j * 5;
             const { x, y } = project(lat, lng);
             const land =
-              (lat > -55 && lat < 72) &&
+              lat > -55 &&
+              lat < 72 &&
               ((lng > -168 && lng < -52 && lat > 8 && lat < 72) ||
                 (lng > -82 && lng < -34 && lat > -55 && lat < 12) ||
                 (lng > -10 && lng < 40 && lat > 35 && lat < 70) ||
@@ -41,7 +46,16 @@ export function WorldMap({ events, max = 60 }: { events: AttackEvent[]; max?: nu
                 (lng > 25 && lng < 180 && lat > -12 && lat < 72) ||
                 (lng > 110 && lng < 156 && lat > -45 && lat < -10));
             if (!land) return null;
-            return <circle key={`${i}-${j}`} cx={x} cy={y} r={0.9} fill="var(--neon-blue)" opacity={0.25} />;
+            return (
+              <circle
+                key={`${i}-${j}`}
+                cx={x}
+                cy={y}
+                r={0.9}
+                fill="var(--neon-blue)"
+                opacity={0.25}
+              />
+            );
           }),
         )}
 
@@ -53,13 +67,23 @@ export function WorldMap({ events, max = 60 }: { events: AttackEvent[]; max?: nu
           const mx = (o.x + p.x) / 2;
           const my = Math.min(o.y, p.y) - 80;
           const d = `M ${p.x} ${p.y} Q ${mx} ${my} ${o.x} ${o.y}`;
-          const color = e.severity === "critical" ? "var(--neon-red)" : e.severity === "high" ? "var(--neon-amber)" : "var(--neon-cyan)";
+          const color =
+            e.severity === "critical"
+              ? "var(--neon-red)"
+              : e.severity === "high"
+                ? "var(--neon-amber)"
+                : "var(--neon-cyan)";
           return (
             <g key={e.id}>
               <path d={d} fill="none" stroke="url(#arc)" strokeWidth={0.8} opacity={0.55} />
               <circle cx={p.x} cy={p.y} r={2.5} fill={color}>
                 <animate attributeName="r" values="2;5;2" dur="2.4s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="1;0.3;1" dur="2.4s" repeatCount="indefinite" />
+                <animate
+                  attributeName="opacity"
+                  values="1;0.3;1"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
               </circle>
             </g>
           );

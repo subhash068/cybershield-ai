@@ -76,9 +76,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "CyberShield AI — SOC Command Center" },
-      { name: "description", content: "AI-powered cybersecurity analytics, threat intelligence and SOC monitoring platform." },
+      {
+        name: "description",
+        content:
+          "AI-powered cybersecurity analytics, threat intelligence and SOC monitoring platform.",
+      },
       { property: "og:title", content: "CyberShield AI — SOC Command Center" },
-      { property: "og:description", content: "AI-powered cybersecurity analytics & threat intelligence platform." },
+      {
+        property: "og:description",
+        content: "AI-powered cybersecurity analytics & threat intelligence platform.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
