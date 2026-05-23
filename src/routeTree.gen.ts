@@ -9,8 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ThreatsRouteImport } from './routes/threats'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as LoginsRouteImport } from './routes/logins'
+import { Route as LiveRouteImport } from './routes/live'
+import { Route as IncidentsRouteImport } from './routes/incidents'
+import { Route as GeoRouteImport } from './routes/geo'
+import { Route as BehaviorRouteImport } from './routes/behavior'
+import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ThreatsRoute = ThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginsRoute = LoginsRouteImport.update({
+  id: '/logins',
+  path: '/logins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsRoute = IncidentsRouteImport.update({
+  id: '/incidents',
+  path: '/incidents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GeoRoute = GeoRouteImport.update({
+  id: '/geo',
+  path: '/geo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BehaviorRoute = BehaviorRouteImport.update({
+  id: '/behavior',
+  path: '/behavior',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +79,172 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/behavior': typeof BehaviorRoute
+  '/geo': typeof GeoRoute
+  '/incidents': typeof IncidentsRoute
+  '/live': typeof LiveRoute
+  '/logins': typeof LoginsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/threats': typeof ThreatsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/behavior': typeof BehaviorRoute
+  '/geo': typeof GeoRoute
+  '/incidents': typeof IncidentsRoute
+  '/live': typeof LiveRoute
+  '/logins': typeof LoginsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/threats': typeof ThreatsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/behavior': typeof BehaviorRoute
+  '/geo': typeof GeoRoute
+  '/incidents': typeof IncidentsRoute
+  '/live': typeof LiveRoute
+  '/logins': typeof LoginsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
+  '/threats': typeof ThreatsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai'
+    | '/alerts'
+    | '/behavior'
+    | '/geo'
+    | '/incidents'
+    | '/live'
+    | '/logins'
+    | '/reports'
+    | '/settings'
+    | '/threats'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai'
+    | '/alerts'
+    | '/behavior'
+    | '/geo'
+    | '/incidents'
+    | '/live'
+    | '/logins'
+    | '/reports'
+    | '/settings'
+    | '/threats'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai'
+    | '/alerts'
+    | '/behavior'
+    | '/geo'
+    | '/incidents'
+    | '/live'
+    | '/logins'
+    | '/reports'
+    | '/settings'
+    | '/threats'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiRoute: typeof AiRoute
+  AlertsRoute: typeof AlertsRoute
+  BehaviorRoute: typeof BehaviorRoute
+  GeoRoute: typeof GeoRoute
+  IncidentsRoute: typeof IncidentsRoute
+  LiveRoute: typeof LiveRoute
+  LoginsRoute: typeof LoginsRoute
+  ReportsRoute: typeof ReportsRoute
+  SettingsRoute: typeof SettingsRoute
+  ThreatsRoute: typeof ThreatsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/threats': {
+      id: '/threats'
+      path: '/threats'
+      fullPath: '/threats'
+      preLoaderRoute: typeof ThreatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logins': {
+      id: '/logins'
+      path: '/logins'
+      fullPath: '/logins'
+      preLoaderRoute: typeof LoginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents': {
+      id: '/incidents'
+      path: '/incidents'
+      fullPath: '/incidents'
+      preLoaderRoute: typeof IncidentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/geo': {
+      id: '/geo'
+      path: '/geo'
+      fullPath: '/geo'
+      preLoaderRoute: typeof GeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/behavior': {
+      id: '/behavior'
+      path: '/behavior'
+      fullPath: '/behavior'
+      preLoaderRoute: typeof BehaviorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +257,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiRoute: AiRoute,
+  AlertsRoute: AlertsRoute,
+  BehaviorRoute: BehaviorRoute,
+  GeoRoute: GeoRoute,
+  IncidentsRoute: IncidentsRoute,
+  LiveRoute: LiveRoute,
+  LoginsRoute: LoginsRoute,
+  ReportsRoute: ReportsRoute,
+  SettingsRoute: SettingsRoute,
+  ThreatsRoute: ThreatsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
